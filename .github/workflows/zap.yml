@@ -21,3 +21,13 @@ jobs:
         with:
           target: 'http://localhost:5000'
           fail_action: false
+          cmd_options: '-J zap-report.json -w zap-report.md -r zap-report.html'
+
+      - name: Upload ZAP Reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: zap-scan-report
+          path: |
+            zap-report.json
+            zap-report.md
+            zap-report.html
