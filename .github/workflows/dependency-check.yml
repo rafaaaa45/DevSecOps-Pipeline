@@ -1,0 +1,23 @@
+name: OWASP Dependency-Check
+
+on: [push, pull_request]
+
+jobs:
+  dependency-check:
+    runs-on: ubuntu-latest
+    container:
+      image: owasp/dependency-check:latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run Dependency-Check
+        run: >
+          dependency-check.sh --scan /github/workspace
+          --format "ALL" --out /github/workspace/reports
+
+      - name: Upload report
+        uses: actions/upload-artifact@v3
+        with:
+          name: dependency-check-report
+          path: reports/
