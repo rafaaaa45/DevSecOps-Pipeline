@@ -1,0 +1,4 @@
+[[rules]]
+id = "test-fake-key"
+description = "Test fake secret key"
+regex = '''sk-[a-zA-Z0-9]{10,}'''
